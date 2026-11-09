@@ -1,0 +1,2110 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0c1732"><meta name="description" content="CACD: treino interativo por disciplina e modo Milionário com 15 perguntas difíceis, explicações e histórico."><title>Quem Quer Ser Diplomata? | CACD</title><link rel="stylesheet" href="style.css"></head><body>
+<header class="site-head"><div class="wrap head-inner"><a href="#" class="brand" data-home><div class="crest" aria-hidden="true">🏛️</div><div><small>CACD · Clube de Estudos</small><strong>Quem Quer Ser Diplomata?</strong></div></a><div class="head-right">SEU BANCO DE QUESTÕES<span id="header-subtitle">Treino com conteúdo de verdade</span></div></div></header>
+<main class="wrap">
+<section id="home" class="screen active"><div class="hero"><div class="eyebrow">Uma carreira. Seis disciplinas. Muitas perguntas.</div><h1>Conhecimento vale <em>um milhão.</em></h1><p>Um jogo para revisar o CACD quando você quiser. A apresentação é divertida; as perguntas, não. Escolha um modo e comece.</p><div class="stat-strip"><div class="stat"><strong id="stat-questions">—</strong><span>questões no banco</span></div><div class="stat"><strong id="stat-sessions">0</strong><span>partidas concluídas</span></div><div class="stat"><strong id="stat-accuracy">—</strong><span>média de acertos</span></div></div></div><div class="section-head"><div><h2>Escolha seu desafio</h2><p>Uma pergunta por vez. Responda clicando na alternativa.</p></div></div><div class="mode-grid"><button id="mode-millionaire" class="mode"><div class="symbol">🏆</div><h3>Modo Milionário</h3><p>Uma partida completa de 15 questões, todas as disciplinas, dificuldade crescente e duas ajudas.</p><span class="cta">JOGAR 15 QUESTÕES →</span></button><button id="mode-subject" class="mode"><div class="symbol">📚</div><h3>Por disciplina</h3><p>Escolha uma das seis áreas, quantas perguntas quer responder e treine com alternativas rigorosas.</p><span class="cta">ESCOLHER DISCIPLINA →</span></button><button id="mode-stats" class="mode"><div class="symbol">📊</div><h3>Meu desempenho</h3><p>Veja seu histórico, porcentagem de acertos por área e exporte o progresso para outro dispositivo.</p><span class="cta">VER ESTATÍSTICAS →</span></button></div><div class="note"><span class="circle-flag"></span> Banco inicial com perguntas autorais baseadas nos materiais enviados: História do Brasil (incluindo Sociologia), História Geral, Geografia, Economia, Direito e Relações Internacionais. Sem Português ou Inglês nesta versão. <strong>Não são questões oficiais do Cebraspe.</strong> <div style="margin-top:10px"><button id="revision-mode" class="secondary">↻ Rever erros (<span id="revision-count">0</span>)</button></div></div></section>
+<section id="configure" class="screen"><button class="back" data-home>← Voltar aos modos</button><div class="panel" style="max-width:690px;margin:auto"><div class="eyebrow">Seu treino, suas regras</div><h1 class="form-title">Treino por disciplina</h1><p class="form-intro">Escolha um dos seis conjuntos. As perguntas serão embaralhadas e novas perguntas terão preferência até que você explore o banco.</p><div class="form-grid"><div class="field"><label for="discipline">Disciplina</label><select id="discipline"><option>História do Brasil</option><option>História Geral</option><option>Geografia</option><option>Economia</option><option>Direito</option><option>Relações Internacionais</option></select></div><div class="field"><label for="length">Quantas questões?</label><select id="length"><option value="10">10 questões</option><option value="15" selected>15 questões</option><option value="20">20 questões</option><option value="all">Todas as disponíveis</option></select></div></div><button id="start-subject" class="primary">COMEÇAR O TREINO →</button><p class="kicker">Sociologia (Freyre e Darcy Ribeiro) está integrada à História do Brasil.</p></div></section>
+<section id="quiz" class="screen"><div class="quiz-shell"><div class="row top-progress"><div><div id="question-index" class="eyebrow">QUESTÃO 1 / 15</div><div id="question-meta" class="kicker" style="margin-top:7px"></div></div><div class="row"><span class="practice-badge" id="q-score">0 acertos</span><button id="exit" class="secondary" style="padding:9px 12px">Sair</button></div></div><div class="meter"><div id="progress-fill" class="fill"></div></div><div class="quiz-main"><div><div class="row" style="margin-top:20px"><span id="subject-tag" class="tag">HISTÓRIA</span><span id="question-difficulty" class="subtle" style="font-size:12px">Dificuldade ●●</span></div><div class="question-card"><h2 id="q-text"></h2></div><div id="answers" class="answers"></div><div id="quiz-lifelines" class="quiz-actions"><button id="fifty" class="secondary">◐ Eliminar duas (50:50)</button><button id="skip" class="secondary">↪ Pular pergunta (0 ponto)</button></div><div id="feedback" class="feedback" aria-live="polite" hidden><strong id="feedback-title"></strong><p id="feedback-text"></p><div class="source" id="feedback-source"></div></div><div style="text-align:right;margin-top:14px"><button id="next" class="primary" hidden>PRÓXIMA QUESTÃO →</button></div><div class="question-meta">Atalho: teclas 1–4 ou A–D. Sem cronômetro, para revisar com calma.</div></div><aside class="ladder"><h3>ESCADA DO CACD</h3><div id="ladder-rows"></div></aside></div></div></section>
+<section id="results" class="screen"><div class="results panel"><div style="font-size:55px">🏅</div><div class="eyebrow">Missão concluída</div><h1 class="result-title">Resultado da rodada</h1><div id="result-grade" class="grade">—</div><p id="result-fraction" class="result-detail"></p><p id="result-description" class="result-detail"></p><h3 style="text-align:left;max-width:500px;margin:28px auto 0">Por disciplina</h3><div id="result-breakdown" class="breakdown"></div><div id="result-percent" class="subtle"></div><div class="result-buttons"><button id="result-replay" class="primary">JOGAR OUTRA RODADA</button><button id="copy-score" class="secondary">COPIAR NOTA</button><button id="result-home" class="secondary">MENU INICIAL</button></div></div></section>
+<section id="stats" class="screen"><button class="back" data-home>← Voltar aos modos</button><h1 class="form-title">Seu desempenho</h1><p class="form-intro">Armazenado neste navegador. Para preservar ou transferir seus resultados, exporte o arquivo de progresso.</p><div class="hist-grid" style="margin:25px 0"><div class="hist-stat"><strong id="total-played">0</strong><span>partidas concluídas</span></div><div class="hist-stat"><strong id="total-answered">0</strong><span>perguntas respondidas</span></div><div class="hist-stat"><strong id="overall-accuracy">—</strong><span>taxa geral de acertos</span></div></div><div class="panel"><h2>Desempenho por disciplina</h2><div id="subject-stats"></div></div><div class="panel" style="margin-top:16px"><h2>Últimas 20 partidas</h2><div id="session-history" class="session-list"></div></div><div class="panel" style="margin-top:16px"><h2>Salvar e transportar seu histórico</h2><p class="subtle">Um dispositivo não sincroniza com outro automaticamente. Exporte o JSON no Mac e importe no celular, por exemplo.</p><div class="quiz-actions"><button id="export-data" class="secondary">↓ Exportar progresso</button><label for="import-data" class="secondary" style="cursor:pointer">↑ Importar progresso</label><input type="file" id="import-data" accept=".json,application/json" hidden><button id="clear-data" class="danger-outline">Apagar histórico</button></div></div></section>
+</main><footer class="wrap">Feito para estudo independente · Banco autoral baseado nas suas notas · Não afiliado ao Instituto Rio Branco, MRE ou Cebraspe.</footer><div id="toasts" class="toasts" aria-live="polite"></div><script>window.CACD_QUESTIONS=[
+  {
+    "id": "hb-001",
+    "subject": "História do Brasil",
+    "q": "A constituição de 1824 distinguiu-se por qual característica institucional?",
+    "options": [
+      "Federalismo com ampla autonomia provincial",
+      "Poder Moderador atribuído ao imperador",
+      "Presidencialismo e voto universal",
+      "Extinção do Conselho de Estado"
+    ],
+    "correct": 1,
+    "explanation": "A Carta de 1824 manteve a monarquia constitucional e estabeleceu o Poder Moderador do imperador.",
+    "source": "Constituição Federal; Boris Fausto",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-002",
+    "subject": "História do Brasil",
+    "q": "A principal inovação institucional do Ato Adicional de 1834 foi:",
+    "options": [
+      "A adoção de uma república federativa",
+      "A criação das Assembleias Legislativas Provinciais",
+      "A extinção do Poder Moderador",
+      "A abolição do tráfico transatlântico"
+    ],
+    "correct": 1,
+    "explanation": "O Ato Adicional ampliou a autonomia provincial e substituiu a Regência Trina pela Regência Una.",
+    "source": "Boris Fausto; cronologia brasileira",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-003",
+    "subject": "História do Brasil",
+    "q": "A chamada Lei Saraiva, de 1881, teve como consequência eleitoral:",
+    "options": [
+      "Estabelecer eleições indiretas e voto feminino",
+      "Introduzir eleições diretas, excluindo analfabetos do sufrágio",
+      "Permitir o voto de todos os maiores de 18 anos",
+      "Acabar com o sistema representativo imperial"
+    ],
+    "correct": 1,
+    "explanation": "A reforma instituiu eleições diretas, mas restringiu significativamente o eleitorado, inclusive por meio da exclusão dos analfabetos.",
+    "source": "Direito de voto; Boris Fausto",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-004",
+    "subject": "História do Brasil",
+    "q": "A Inconfidência Mineira de 1789 ocorreu em um contexto de:",
+    "options": [
+      "Repressão à imigração europeia",
+      "Guerra pela incorporação do Acre",
+      "Resistência à Constituição de 1824",
+      "Reação contra a derrama e tensões fiscais da mineração"
+    ],
+    "correct": 3,
+    "explanation": "O movimento relacionou-se à crise da mineração, à tributação colonial e à circulação de ideias ilustradas.",
+    "source": "1789; cronologia brasileira",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-005",
+    "subject": "História do Brasil",
+    "q": "A Conjuração Baiana (1798), diferentemente da Inconfidência Mineira, destacou-se por:",
+    "options": [
+      "Ter como principal foco a independência do Paraguai",
+      "Defender exclusivamente a monarquia",
+      "Ter participação popular e propostas mais igualitárias",
+      "Ser organizada pelo Exército republicano"
+    ],
+    "correct": 2,
+    "explanation": "A Conjuração Baiana teve perfil social mais popular e articulou propostas de igualdade e emancipação mais radicais.",
+    "source": "Boris Fausto; cronologia brasileira",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-006",
+    "subject": "História do Brasil",
+    "q": "A Revolução Pernambucana de 1817 caracterizou-se por:",
+    "options": [
+      "Defender a permanência do absolutismo português",
+      "Estabelecer um governo republicano de curta duração",
+      "Apoiar a invasão holandesa de Pernambuco",
+      "Fundar o Estado Novo"
+    ],
+    "correct": 1,
+    "explanation": "Foi uma revolta de orientação republicana contra a monarquia portuguesa, reprimida ainda em 1817.",
+    "source": "Cronologia brasileira; conflitos",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-007",
+    "subject": "História do Brasil",
+    "q": "A Confederação do Equador (1824) opôs-se sobretudo:",
+    "options": [
+      "À proclamação da República em 1889",
+      "Ao sistema federalista de 1891",
+      "À política econômica de Juscelino Kubitschek",
+      "À centralização imperial e à Constituição outorgada"
+    ],
+    "correct": 3,
+    "explanation": "O movimento separatista e republicano criticou a concentração de poder de D. Pedro I; Frei Caneca esteve entre seus líderes.",
+    "source": "Boris Fausto; conflitos",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-008",
+    "subject": "História do Brasil",
+    "q": "A Cabanagem foi uma revolta regencial concentrada principalmente:",
+    "options": [
+      "Em Minas Gerais",
+      "No Rio Grande do Sul",
+      "Na Bahia",
+      "No Pará"
+    ],
+    "correct": 3,
+    "explanation": "A Cabanagem (1835–1840) ocorreu na província do Grão-Pará e foi marcada por intensa participação popular e repressão.",
+    "source": "Conflitos; Boris Fausto",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-009",
+    "subject": "História do Brasil",
+    "q": "Qual episódio foi uma revolta de africanos muçulmanos escravizados e libertos, em Salvador, em 1835?",
+    "options": [
+      "Revolta da Chibata",
+      "Revolta Praieira",
+      "Balaiada",
+      "Revolta dos Malês"
+    ],
+    "correct": 3,
+    "explanation": "A Revolta dos Malês ocorreu em Salvador e teve liderança e participação de africanos muçulmanos.",
+    "source": "Conflitos; Boris Fausto",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-010",
+    "subject": "História do Brasil",
+    "q": "O Golpe da Maioridade (1840) implicou:",
+    "options": [
+      "Proclamação da República",
+      "Extinção da escravidão no Império",
+      "Abdicação de D. Pedro I",
+      "Antecipação da maioridade de D. Pedro II para encerrar a Regência"
+    ],
+    "correct": 3,
+    "explanation": "A declaração antecipada da maioridade de D. Pedro II encerrou o período regencial.",
+    "source": "Boris Fausto; cronologia brasileira",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-011",
+    "subject": "História do Brasil",
+    "q": "A Guerra da Cisplatina (1825–1828) resultou na:",
+    "options": [
+      "Anexação permanente do Uruguai ao Brasil",
+      "Independência do Uruguai como Estado separado",
+      "Incorporação do Paraguai pelo Império",
+      "Dissolução das Províncias Unidas"
+    ],
+    "correct": 1,
+    "explanation": "A Convenção Preliminar de Paz de 1828, mediada pela Grã-Bretanha, reconheceu a independência do Uruguai.",
+    "source": "Lessa & Doratioto; formação territorial",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-012",
+    "subject": "História do Brasil",
+    "q": "Qual medida extinguiu efetivamente o tráfico transatlântico de escravizados para o Brasil?",
+    "options": [
+      "Lei do Ventre Livre (1871)",
+      "Lei Áurea (1888)",
+      "Lei Saraiva",
+      "Lei Eusébio de Queirós (1850)"
+    ],
+    "correct": 3,
+    "explanation": "A Lei Eusébio de Queirós de 1850 marcou a repressão efetiva do tráfico atlântico, sem abolir a escravidão.",
+    "source": "Cervo & Bueno; Boris Fausto",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-013",
+    "subject": "História do Brasil",
+    "q": "O propósito central do Convênio de Taubaté (1906) era:",
+    "options": [
+      "Financiar o desenvolvimento da indústria naval",
+      "Sustentar os preços do café por meio de compras de excedentes",
+      "Abolir tarifas sobre bens industriais",
+      "Financiar a reforma agrária"
+    ],
+    "correct": 1,
+    "explanation": "A valorização do café mobilizou os governos estaduais para comprar excedentes e sustentar preços.",
+    "source": "Boris Fausto; história econômica",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-014",
+    "subject": "História do Brasil",
+    "q": "A Revolta da Chibata (1910) questionava principalmente:",
+    "options": [
+      "O voto censitário",
+      "Os castigos corporais e as condições dos marinheiros",
+      "O monopólio do açúcar",
+      "A transferência da capital federal para Brasília"
+    ],
+    "correct": 1,
+    "explanation": "Liderada por marinheiros, entre eles João Cândido, combatia os castigos físicos e as condições degradantes na Marinha.",
+    "source": "Conflitos; cronologia brasileira",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-015",
+    "subject": "História do Brasil",
+    "q": "A Revolução Constitucionalista de 1932 reivindicava sobretudo:",
+    "options": [
+      "Uma nova Constituição e a constitucionalização do governo Vargas",
+      "O retorno imediato da monarquia",
+      "A independência do estado do Pará",
+      "A criação do Poder Moderador"
+    ],
+    "correct": 0,
+    "explanation": "O movimento paulista pressionou pela reorganização constitucional após a Revolução de 1930.",
+    "source": "Boris Fausto; conflitos",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-016",
+    "subject": "História do Brasil",
+    "q": "O Estado Novo (1937–1945) foi instaurado por:",
+    "options": [
+      "A Assembleia Constituinte de 1946",
+      "Eleições diretas com sufrágio universal",
+      "Golpe de Getúlio Vargas e fechamento do Congresso",
+      "Plebiscito de autodeterminação regional"
+    ],
+    "correct": 2,
+    "explanation": "Vargas instaurou uma ditadura, fechou o Congresso e suprimiu o pluralismo partidário.",
+    "source": "Atos institucionais; Boris Fausto",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-017",
+    "subject": "História do Brasil",
+    "q": "O Código Eleitoral de 1932 é lembrado por:",
+    "options": [
+      "Suprimir a Justiça Eleitoral",
+      "Proibir o voto secreto",
+      "Incorporar o voto feminino e o voto secreto",
+      "Instituir o voto para analfabetos"
+    ],
+    "correct": 2,
+    "explanation": "O Código de 1932 instituiu o voto secreto e regulamentou o sufrágio feminino, além de criar a Justiça Eleitoral.",
+    "source": "Direito de voto; Boris Fausto",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-018",
+    "subject": "História do Brasil",
+    "q": "O Movimento da Legalidade de 1961, liderado por Leonel Brizola, procurou:",
+    "options": [
+      "Impedir a posse de Juscelino Kubitschek",
+      "Garantir a posse constitucional de João Goulart",
+      "Apoiar o AI-5",
+      "Dissolver o Congresso em nome da Junta Militar"
+    ],
+    "correct": 1,
+    "explanation": "Após a renúncia de Jânio Quadros, o movimento resistiu à tentativa de impedir a posse do vice-presidente.",
+    "source": "Cronologia brasileira; Boris Fausto",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-019",
+    "subject": "História do Brasil",
+    "q": "O Ato Institucional nº 5, decretado em 1968, permitiu:",
+    "options": [
+      "Restaurar o pluripartidarismo",
+      "Convocar eleições presidenciais diretas imediatas",
+      "Ampliar o habeas corpus político",
+      "Fechar o Congresso e suspender garantias constitucionais"
+    ],
+    "correct": 3,
+    "explanation": "O AI-5 aprofundou a repressão e a concentração de poderes durante a ditadura militar.",
+    "source": "Atos institucionais; democratização",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-020",
+    "subject": "História do Brasil",
+    "q": "Qual mudança eleitoral ocorreu em 1985 por emenda constitucional?",
+    "options": [
+      "Proibição do voto das mulheres",
+      "Retorno do voto censitário",
+      "Extensão do sufrágio facultativo aos analfabetos",
+      "Adoção do voto obrigatório aos 16 anos"
+    ],
+    "correct": 2,
+    "explanation": "A Emenda Constitucional 25 de 1985 restabeleceu o voto dos analfabetos, em caráter facultativo.",
+    "source": "Direito de voto; Constituição Federal",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-021",
+    "subject": "História do Brasil",
+    "q": "A Constituição de 1988 estabeleceu que o voto é facultativo para:",
+    "options": [
+      "Pessoas de 16 e 17 anos, maiores de 70 anos e analfabetos",
+      "Todos os servidores públicos",
+      "Apenas maiores de 70 anos",
+      "Todos os maiores de 18 anos"
+    ],
+    "correct": 0,
+    "explanation": "A Constituição de 1988 prevê voto facultativo para analfabetos, maiores de 70 e jovens de 16 a 17 anos.",
+    "source": "Constituição Federal; direito de voto",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-022",
+    "subject": "História do Brasil",
+    "q": "Na interpretação de Darcy Ribeiro, o 'Brasil caboclo' vincula-se principalmente:",
+    "options": [
+      "À Amazônia, ao extrativismo e às matrizes indígenas",
+      "À pecuária dos pampas",
+      "À imigração italiana no Sul",
+      "Ao mundo dos engenhos do Nordeste"
+    ],
+    "correct": 0,
+    "explanation": "Ribeiro distingue formações regionais; o Brasil caboclo remete à Amazônia e à mistura cultural de matrizes indígenas e portuguesas.",
+    "source": "O Povo Brasileiro",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-023",
+    "subject": "História do Brasil",
+    "q": "Para Darcy Ribeiro, o 'Brasil crioulo' formou-se sobretudo:",
+    "options": [
+      "Na mineração amazônica",
+      "Na economia açucareira do litoral nordestino",
+      "No garimpo do Mato Grosso do Sul",
+      "Na cultura industrial paulista do século XX"
+    ],
+    "correct": 1,
+    "explanation": "O Brasil crioulo se organizou no litoral açucareiro, com grande presença africana e escravização.",
+    "source": "O Povo Brasileiro",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-024",
+    "subject": "História do Brasil",
+    "q": "Qual leitura exprime a tese de Darcy Ribeiro sobre o atraso social brasileiro?",
+    "options": [
+      "É explicado por elites e estruturas de dominação que reproduzem desigualdades",
+      "É consequência exclusiva do clima tropical",
+      "Foi superado automaticamente pela abolição",
+      "Resulta essencialmente de limitações biológicas da população"
+    ],
+    "correct": 0,
+    "explanation": "Ribeiro associa desigualdade à formação colonial e à preservação de privilégios, não à inferioridade cultural ou racial.",
+    "source": "O Povo Brasileiro",
+    "difficulty": 3
+  },
+  {
+    "id": "hb-025",
+    "subject": "História do Brasil",
+    "q": "Na análise de Gilberto Freyre, a casa-grande e a senzala servem como símbolos:",
+    "options": [
+      "Da industrialização do Estado Novo",
+      "Da organização do Estado federativo",
+      "Da separação absoluta entre economia e família",
+      "Das relações patriarcais e escravistas na formação social brasileira"
+    ],
+    "correct": 3,
+    "explanation": "Freyre analisa a formação da sociedade colonial por meio da família patriarcal, da escravidão e da convivência desigual entre seus grupos.",
+    "source": "Casa-Grande & Senzala",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-026",
+    "subject": "História do Brasil",
+    "q": "O Tratado de Petrópolis (1903) é associado à:",
+    "options": [
+      "Definição da fronteira com a Argentina no caso de Palmas",
+      "Incorporação do Acre ao Brasil após negociação com a Bolívia",
+      "Criação do Uruguai independente",
+      "Anexação do Amapá pela França"
+    ],
+    "correct": 1,
+    "explanation": "O Tratado de Petrópolis resolveu a questão acreana com a Bolívia, incluindo compensações e compromissos brasileiros.",
+    "source": "Formação do território; Cervo & Bueno",
+    "difficulty": 1
+  },
+  {
+    "id": "hb-027",
+    "subject": "História do Brasil",
+    "q": "A sentença arbitral de 1900 sobre o Amapá foi:",
+    "options": [
+      "Favorável à Bolívia",
+      "Favorável à França",
+      "Favorável ao Brasil",
+      "Favorável à Grã-Bretanha"
+    ],
+    "correct": 2,
+    "explanation": "A arbitragem suíça definiu favoravelmente ao Brasil a disputa fronteiriça com a França.",
+    "source": "Formação territorial; Lessa & Doratioto",
+    "difficulty": 2
+  },
+  {
+    "id": "hb-028",
+    "subject": "História do Brasil",
+    "q": "A Guerra de Canudos (1896–1897) relaciona-se a:",
+    "options": [
+      "Uma invasão holandesa no século XVII",
+      "Um conflito sertanejo reprimido militarmente pela República",
+      "Uma guerra naval entre Brasil e Argentina",
+      "Uma revolta de oficiais da Marinha contra castigos"
+    ],
+    "correct": 1,
+    "explanation": "Canudos foi destruído por campanhas militares republicanas e tornou-se símbolo dos conflitos sociais no sertão.",
+    "source": "Boris Fausto; conflitos",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-001",
+    "subject": "História Geral",
+    "q": "O Congresso de Viena (1814–1815) procurou principalmente:",
+    "options": [
+      "Implantar repúblicas em todos os Estados europeus",
+      "Unificar a Alemanha sob liderança francesa",
+      "Criar a Organização das Nações Unidas",
+      "Restaurar uma ordem europeia baseada no equilíbrio de poder e na legitimidade dinástica"
+    ],
+    "correct": 3,
+    "explanation": "A diplomacia de Metternich, Castlereagh e outros combinou restauração e equilíbrio de poder.",
+    "source": "Kissinger; cronologia mundial",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-002",
+    "subject": "História Geral",
+    "q": "Para Kissinger, Richelieu teve importância histórica por:",
+    "options": [
+      "Subordinar a França à política universal católica dos Habsburgo",
+      "Defender a raison d'État como guia da ação externa francesa",
+      "Fundar a Liga das Nações",
+      "Concluir o Tratado de Versalhes"
+    ],
+    "correct": 1,
+    "explanation": "Richelieu priorizou interesses franceses acima da solidariedade religiosa da monarquia católica.",
+    "source": "Kissinger, cap. 3",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-003",
+    "subject": "História Geral",
+    "q": "A Paz de Vestfália (1648) encerrou:",
+    "options": [
+      "A Guerra dos Trinta Anos",
+      "A Guerra da Crimeia",
+      "A Guerra dos Sete Anos",
+      "A Primeira Guerra Mundial"
+    ],
+    "correct": 0,
+    "explanation": "Vestfália encerrou a Guerra dos Trinta Anos e é marco convencional da ordem de Estados soberanos.",
+    "source": "Kissinger; cronologia mundial",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-004",
+    "subject": "História Geral",
+    "q": "A Guerra da Crimeia (1853–1856) enfraqueceu o Concerto Europeu especialmente porque:",
+    "options": [
+      "Estabeleceu a hegemonia prussiana na Itália",
+      "Uniu permanentemente Áustria e Rússia",
+      "Expôs a ruptura da solidariedade entre as monarquias conservadoras",
+      "Criou a União Europeia"
+    ],
+    "correct": 2,
+    "explanation": "A posição austríaca contra a Rússia rompeu a confiança entre as cortes conservadoras e fragilizou a Santa Aliança.",
+    "source": "Kissinger, cap. 4",
+    "difficulty": 3
+  },
+  {
+    "id": "hg-005",
+    "subject": "História Geral",
+    "q": "A estratégia de Bismarck após a unificação alemã de 1871 buscava:",
+    "options": [
+      "Promover conquistas territoriais ilimitadas",
+      "Isolar a França e evitar uma coalizão franco-russa contra a Alemanha",
+      "Desmantelar o Império Austro-Húngaro",
+      "Romper todos os contatos com a Rússia"
+    ],
+    "correct": 1,
+    "explanation": "Após 1871, Bismarck via a Alemanha como potência satisfeita e priorizava impedir uma guerra em duas frentes.",
+    "source": "Kissinger, caps. 6–7",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-006",
+    "subject": "História Geral",
+    "q": "O Tratado de Resseguro de 1887 foi negociado entre:",
+    "options": [
+      "Grã-Bretanha e Japão",
+      "Áustria-Hungria e França",
+      "França e Itália",
+      "Alemanha e Rússia"
+    ],
+    "correct": 3,
+    "explanation": "O acordo secreto de neutralidade buscava manter a Rússia distante da França sem romper a ligação alemã com a Áustria.",
+    "source": "Kissinger, cap. 6",
+    "difficulty": 3
+  },
+  {
+    "id": "hg-007",
+    "subject": "História Geral",
+    "q": "A crise do telegrama de Ems de 1870 contribuiu para:",
+    "options": [
+      "A Guerra Franco-Prussiana",
+      "A Guerra Russo-Japonesa",
+      "A Revolução Russa",
+      "A Guerra da Crimeia"
+    ],
+    "correct": 0,
+    "explanation": "Bismarck divulgou uma versão editada da comunicação real, agravando a crise e incentivando a declaração francesa de guerra.",
+    "source": "Kissinger, cap. 5",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-008",
+    "subject": "História Geral",
+    "q": "O Plano Schlieffen pressupunha, em caso de guerra europeia:",
+    "options": [
+      "Invadir a Grã-Bretanha pelo mar",
+      "Derrotar rapidamente a França por meio de avanço pela Bélgica antes de voltar-se à Rússia",
+      "Concentrar todo o Exército alemão contra o Império Otomano",
+      "Evitar qualquer mobilização contra a França"
+    ],
+    "correct": 1,
+    "explanation": "O planejamento militar alemão subordinou a diplomacia à necessidade de ataque imediato a oeste.",
+    "source": "Kissinger, cap. 8",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-009",
+    "subject": "História Geral",
+    "q": "Qual foi o principal significado de Brest-Litovsk (1918)?",
+    "options": [
+      "A unificação dos países bálticos",
+      "A rendição alemã aos Aliados",
+      "A saída da Rússia bolchevique da Primeira Guerra com grandes perdas territoriais",
+      "A fundação da Liga das Nações"
+    ],
+    "correct": 2,
+    "explanation": "Lenin aceitou a paz com as Potências Centrais para preservar o novo regime soviético.",
+    "source": "Kissinger, cap. 10",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-010",
+    "subject": "História Geral",
+    "q": "O Tratado de Rapallo de 1922 foi celebrado por:",
+    "options": [
+      "França e Polônia",
+      "Itália e Grã-Bretanha",
+      "Estados Unidos e Japão",
+      "Alemanha e Rússia soviética"
+    ],
+    "correct": 3,
+    "explanation": "Dois Estados marginalizados pelo arranjo pós-1918 restabeleceram relações e cooperaram posteriormente em áreas econômicas e militares.",
+    "source": "Kissinger, cap. 10",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-011",
+    "subject": "História Geral",
+    "q": "Os Tratados de Locarno (1925) são relevantes porque:",
+    "options": [
+      "Garantiram sobretudo as fronteiras ocidentais da Alemanha, mas não as orientais",
+      "Dissolveram a Liga das Nações",
+      "Criaram o Pacto de Varsóvia",
+      "Garantiram igualmente as fronteiras leste e oeste alemãs"
+    ],
+    "correct": 0,
+    "explanation": "A assimetria deixou o leste europeu mais exposto a reivindicações revisionistas alemãs.",
+    "source": "Kissinger, cap. 11",
+    "difficulty": 3
+  },
+  {
+    "id": "hg-012",
+    "subject": "História Geral",
+    "q": "Para Kissinger, a remilitarização da Renânia em 1936 foi decisiva por:",
+    "options": [
+      "Encerrar o regime nazista",
+      "Eliminar a capacidade francesa de pressionar estrategicamente a Alemanha a partir do oeste",
+      "Forçar a Alemanha a abandonar a Áustria",
+      "Garantir a neutralidade soviética"
+    ],
+    "correct": 1,
+    "explanation": "O fortalecimento alemão na Renânia tornou muito mais difícil defender os aliados orientais da França.",
+    "source": "Kissinger, cap. 12",
+    "difficulty": 3
+  },
+  {
+    "id": "hg-013",
+    "subject": "História Geral",
+    "q": "O Pacto Molotov–Ribbentrop, de agosto de 1939, compreendia:",
+    "options": [
+      "Uma união alfandegária permanente",
+      "Um tratado público de não agressão e protocolos secretos de esferas de influência",
+      "A criação imediata da ONU",
+      "Uma aliança pública em favor da Polônia"
+    ],
+    "correct": 1,
+    "explanation": "O acordo germano-soviético incluía entendimento secreto sobre a divisão de áreas da Europa Oriental.",
+    "source": "Kissinger, cap. 13",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-014",
+    "subject": "História Geral",
+    "q": "A Conferência de Bandung (1955) é importante por:",
+    "options": [
+      "Criar a OTAN",
+      "Assinar a Carta da OEA",
+      "Fundar formalmente a União Europeia",
+      "Fortalecer a articulação afro-asiática e o anticolonialismo"
+    ],
+    "correct": 3,
+    "explanation": "Bandung reuniu países africanos e asiáticos e influenciou o ambiente de emergência do não alinhamento.",
+    "source": "História Mundial; After Tamerlane",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-015",
+    "subject": "História Geral",
+    "q": "A crise de Suez de 1956 evidenciou sobretudo:",
+    "options": [
+      "A redução da autonomia estratégica britânica e francesa frente às superpotências",
+      "A derrota militar definitiva do Egito e queda de Nasser",
+      "O fim do canal como rota marítima",
+      "A independência completa do poder britânico em relação aos EUA"
+    ],
+    "correct": 0,
+    "explanation": "Pressão norte-americana e internacional forçou a interrupção da intervenção de Reino Unido, França e Israel; Nasser fortaleceu-se politicamente.",
+    "source": "Kissinger, cap. 21",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-016",
+    "subject": "História Geral",
+    "q": "Na revolta húngara de 1956, a decisão que acentuou o confronto com Moscou foi:",
+    "options": [
+      "Pedir ingresso imediato no Comecon",
+      "Aceitar o retorno do estalinismo",
+      "Reafirmar participação no Pacto de Varsóvia",
+      "Declarar neutralidade e intenção de deixar o Pacto de Varsóvia"
+    ],
+    "correct": 3,
+    "explanation": "Na interpretação de Kissinger, a saída da aliança soviética foi percebida como ruptura estratégica intolerável.",
+    "source": "Kissinger, cap. 22",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-017",
+    "subject": "História Geral",
+    "q": "O Muro de Berlim começou a ser construído em:",
+    "options": [
+      "1949",
+      "1961",
+      "1989",
+      "1945"
+    ],
+    "correct": 1,
+    "explanation": "O fechamento da fronteira em agosto de 1961 buscava interromper a saída de alemães orientais via Berlim Ocidental.",
+    "source": "Kissinger, cap. 23",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-018",
+    "subject": "História Geral",
+    "q": "O Tratado INF, assinado em 1987, distingue-se dos acordos SALT por:",
+    "options": [
+      "Instituir o Pacto de Varsóvia",
+      "Autorizar armas nucleares em Cuba",
+      "Eliminar uma categoria de mísseis nucleares terrestres de alcance intermediário",
+      "Criar a Aliança Atlântica"
+    ],
+    "correct": 2,
+    "explanation": "O INF eliminou uma classe de armamentos; SALT limitava categorias de armamentos estratégicos.",
+    "source": "Kissinger, cap. 30",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-019",
+    "subject": "História Geral",
+    "q": "Segundo Fukuyama, qual conjunto sustenta a ordem política moderna?",
+    "options": [
+      "Federalismo, parlamentarismo e sufrágio censitário",
+      "Estado, império e religião oficial",
+      "Estado capaz, Estado de Direito e governo responsável",
+      "Mercado financeiro, forças armadas e partido único"
+    ],
+    "correct": 2,
+    "explanation": "Fukuyama identifica três pilares institucionais que podem emergir em sequências históricas distintas.",
+    "source": "The Origins of Political Order",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-020",
+    "subject": "História Geral",
+    "q": "Na comparação de Fukuyama entre China e Índia, a China historicamente se distinguiu por:",
+    "options": [
+      "A total ausência de governo central",
+      "Uma sociedade de castas com primazia bramânica sobre os reis",
+      "A existência precoce de eleições parlamentares",
+      "Um Estado burocrático centralizado relativamente forte"
+    ],
+    "correct": 3,
+    "explanation": "A competição militar favoreceu burocracias centralizadas chinesas; a Índia desenvolveu importantes restrições sociais e religiosas ao Estado.",
+    "source": "The Origins of Political Order",
+    "difficulty": 3
+  },
+  {
+    "id": "hg-021",
+    "subject": "História Geral",
+    "q": "A abertura comercial das Rotas da Seda é melhor compreendida como:",
+    "options": [
+      "Uma única estrada terrestre entre Roma e Pequim",
+      "Uma rede variável de conexões terrestres e marítimas ligando regiões eurasiáticas",
+      "Um circuito exclusivamente português posterior a 1500",
+      "Um sistema que jamais transportou crenças religiosas"
+    ],
+    "correct": 1,
+    "explanation": "Frankopan analisa redes comerciais, culturais e religiosas múltiplas, não uma rota única e estática.",
+    "source": "The Silk Roads — Frankopan",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-022",
+    "subject": "História Geral",
+    "q": "A independência da Índia britânica e a Partição ocorreram em:",
+    "options": [
+      "1962",
+      "1919",
+      "1935",
+      "1947"
+    ],
+    "correct": 3,
+    "explanation": "A independência de 1947 esteve acompanhada da partição entre Índia e Paquistão, com grandes deslocamentos e violência.",
+    "source": "After Tamerlane; cronologia mundial",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-023",
+    "subject": "História Geral",
+    "q": "O Império Otomano entrou na Primeira Guerra Mundial ao lado:",
+    "options": [
+      "Das Potências Centrais",
+      "Da Liga das Nações",
+      "Do Japão contra a Alemanha",
+      "Da Tríplice Entente"
+    ],
+    "correct": 0,
+    "explanation": "O Império Otomano alinhou-se a Alemanha e Áustria-Hungria, com consequências decisivas para sua desintegração.",
+    "source": "A Peace to End All Peace; cronologia mundial",
+    "difficulty": 2
+  },
+  {
+    "id": "hg-024",
+    "subject": "História Geral",
+    "q": "A Revolução de 1911 na China é associada principalmente:",
+    "options": [
+      "À fundação da dinastia Ming",
+      "À anexação do Tibete pela Grã-Bretanha",
+      "À queda da dinastia Qing e à proclamação de uma república",
+      "À vitória final de Mao em 1949"
+    ],
+    "correct": 2,
+    "explanation": "A revolução derrubou a dinastia Qing e inaugurou um período republicano politicamente fragmentado.",
+    "source": "Modern China; cronologia mundial",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-025",
+    "subject": "História Geral",
+    "q": "A Restauração Meiji, iniciada em 1868, relaciona-se:",
+    "options": [
+      "Ao isolamento integral do Japão da economia mundial",
+      "À reorganização institucional e modernização do Estado japonês",
+      "À implantação imediata do regime comunista",
+      "À divisão japonesa em duas zonas de ocupação"
+    ],
+    "correct": 1,
+    "explanation": "O Estado Meiji realizou reformas políticas, militares e econômicas associadas à modernização japonesa.",
+    "source": "Japan Modern History",
+    "difficulty": 1
+  },
+  {
+    "id": "hg-026",
+    "subject": "História Geral",
+    "q": "O colapso da União Soviética ocorreu formalmente em:",
+    "options": [
+      "1994",
+      "1985",
+      "1989",
+      "1991"
+    ],
+    "correct": 3,
+    "explanation": "A URSS foi dissolvida em dezembro de 1991, após crises internas e a independência de suas repúblicas.",
+    "source": "Kissinger, cap. 30; cronologia mundial",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-001",
+    "subject": "Geografia",
+    "q": "Na teoria de Halford Mackinder, o Heartland corresponde sobretudo:",
+    "options": [
+      "Ao Oceano Índico",
+      "À região dos Andes centrais",
+      "Ao núcleo continental eurasiático",
+      "À costa ocidental do Atlântico Sul"
+    ],
+    "correct": 2,
+    "explanation": "Mackinder identificou a massa central da Eurásia como área de importância estratégica por sua profundidade territorial.",
+    "source": "Geografia — Geopolítica",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-002",
+    "subject": "Geografia",
+    "q": "Spykman destacou o Rimland, ou seja:",
+    "options": [
+      "O deserto do Saara",
+      "A região central da Amazônia",
+      "As margens periféricas da Eurásia",
+      "Somente a Antártida"
+    ],
+    "correct": 2,
+    "explanation": "Spykman deu especial peso estratégico às faixas periféricas da massa eurasiática.",
+    "source": "Geografia — Geopolítica",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-003",
+    "subject": "Geografia",
+    "q": "Conurbação é definida principalmente por:",
+    "options": [
+      "Criação de uma fronteira internacional",
+      "Substituição de redes urbanas por aldeias",
+      "Continuidade física entre manchas urbanas de municípios vizinhos",
+      "Crescimento populacional rural"
+    ],
+    "correct": 2,
+    "explanation": "Conurbação é a fusão física de tecidos urbanos; não equivale necessariamente a integração político-administrativa.",
+    "source": "Geografia — Urbanização",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-004",
+    "subject": "Geografia",
+    "q": "Metropolização difere da conurbação porque ressalta:",
+    "options": [
+      "A extinção da mobilidade pendular",
+      "A integração funcional e a centralidade econômica de áreas metropolitanas",
+      "Somente a continuidade física de prédios",
+      "A desindustrialização obrigatória"
+    ],
+    "correct": 1,
+    "explanation": "A metropolização envolve relações econômicas e de serviços entre centros e periferias metropolitanas.",
+    "source": "Geografia — Urbanização",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-005",
+    "subject": "Geografia",
+    "q": "Uma cidade global caracteriza-se principalmente por:",
+    "options": [
+      "Ter o maior território municipal do mundo",
+      "Concentrar funções de comando financeiro e serviços avançados na economia mundial",
+      "Ter população maior que todas as demais cidades do país",
+      "Ser necessariamente a capital nacional"
+    ],
+    "correct": 1,
+    "explanation": "As funções de comando em redes econômicas internacionais são centrais ao conceito de cidade global.",
+    "source": "Geografia — Redes de cidades",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-006",
+    "subject": "Geografia",
+    "q": "O bônus demográfico ocorre quando:",
+    "options": [
+      "Aumenta relativamente a participação de pessoas em idade ativa",
+      "A população idosa supera integralmente a ativa",
+      "Toda a população passa a residir em cidades",
+      "A taxa de natalidade fica permanentemente acima de 5 filhos"
+    ],
+    "correct": 0,
+    "explanation": "A relação entre pessoas potencialmente ativas e dependentes pode favorecer o crescimento, mas requer políticas adequadas.",
+    "source": "Geografia — População",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-007",
+    "subject": "Geografia",
+    "q": "A transição demográfica corresponde ao processo histórico de:",
+    "options": [
+      "Alteração de padrões de mortalidade e fecundidade",
+      "Substituição obrigatória de migração interna por internacional",
+      "Aumento permanente da fecundidade",
+      "Desaparecimento da urbanização"
+    ],
+    "correct": 0,
+    "explanation": "Em geral, a mortalidade recua antes da fecundidade, alterando o crescimento e a composição etária.",
+    "source": "Geografia — População",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-008",
+    "subject": "Geografia",
+    "q": "O êxodo rural é entendido como:",
+    "options": [
+      "Viagem diária entre bairros",
+      "Migração do campo para as cidades",
+      "Deslocamento urbano para o campo",
+      "Circulação transfronteiriça de capitais"
+    ],
+    "correct": 1,
+    "explanation": "Êxodo rural designa a migração de população rural para centros urbanos.",
+    "source": "Geografia — População e urbanização",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-009",
+    "subject": "Geografia",
+    "q": "O movimento pendular refere-se sobretudo:",
+    "options": [
+      "À emigração definitiva para outro continente",
+      "A mudanças no relevo por erosão",
+      "À migração sazonal de rebanhos",
+      "A deslocamentos regulares entre residência e trabalho ou estudo"
+    ],
+    "correct": 3,
+    "explanation": "Movimentos pendulares são deslocamentos recorrentes, frequentemente cotidianos, relacionados à integração metropolitana.",
+    "source": "Geografia — Urbanização",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-010",
+    "subject": "Geografia",
+    "q": "A desconcentração industrial brasileira implica:",
+    "options": [
+      "Fim das desigualdades regionais",
+      "Redistribuição relativa da indústria para fora de áreas tradicionais de concentração",
+      "Desaparecimento da indústria nacional",
+      "Concentração total no município de São Paulo"
+    ],
+    "correct": 1,
+    "explanation": "A produção industrial passou a ocupar novas áreas, sem eliminar a importância dos núcleos históricos.",
+    "source": "Geografia — Indústria",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-011",
+    "subject": "Geografia",
+    "q": "A noção de fronteira agrícola no Brasil refere-se:",
+    "options": [
+      "Apenas à divisa internacional do país",
+      "Ao limite entre setor secundário e terciário",
+      "À área de agricultura urbana consolidada",
+      "À expansão de atividades agropecuárias sobre novas áreas"
+    ],
+    "correct": 3,
+    "explanation": "O avanço de frentes agropecuárias transforma uso do solo, infraestrutura e conflitos fundiários.",
+    "source": "Geografia — Geografia agrária",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-012",
+    "subject": "Geografia",
+    "q": "A modernização conservadora do campo brasileiro indica:",
+    "options": [
+      "Fim do trabalho assalariado rural",
+      "Mudança técnica sem ruptura necessária da concentração fundiária",
+      "Redistribuição automática de todas as propriedades",
+      "Eliminação do agronegócio"
+    ],
+    "correct": 1,
+    "explanation": "A adoção de tecnologia e ganhos de produtividade podem coexistir com desigualdades agrárias históricas.",
+    "source": "Geografia — Geografia agrária",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-013",
+    "subject": "Geografia",
+    "q": "O Cerrado brasileiro é associado a:",
+    "options": [
+      "Vegetação exclusiva da faixa litorânea",
+      "Vegetação savânica e marcada sazonalidade de chuvas",
+      "Floresta equatorial permanentemente inundada em toda a área",
+      "Tundra polar"
+    ],
+    "correct": 1,
+    "explanation": "O Cerrado reúne formações savânicas e importante sazonalidade climática, abrangendo extensas chapadas e planaltos.",
+    "source": "Geografia — Biomas",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-014",
+    "subject": "Geografia",
+    "q": "A Caatinga relaciona-se particularmente:",
+    "options": [
+      "À vegetação alpina do Sul",
+      "À tundra do Planalto Central",
+      "Ao semiárido nordestino e à vegetação adaptada à irregularidade de chuvas",
+      "À floresta ombrófila da Amazônia"
+    ],
+    "correct": 2,
+    "explanation": "A Caatinga apresenta adaptações à escassez e irregularidade hídrica do semiárido.",
+    "source": "Geografia — Biomas",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-015",
+    "subject": "Geografia",
+    "q": "O domínio dos mares de morros caracteriza-se por:",
+    "options": [
+      "Chapadas sem dissecação fluvial",
+      "Relevo de colinas arredondadas associado historicamente à Mata Atlântica",
+      "Extensas planícies geladas",
+      "Predomínio de dunas móveis amazônicas"
+    ],
+    "correct": 1,
+    "explanation": "O domínio morfoclimático dos mares de morros é associado à fachada tropical atlântica úmida.",
+    "source": "Geografia — Domínios morfoclimáticos",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-016",
+    "subject": "Geografia",
+    "q": "A noção de bacia hidrográfica é:",
+    "options": [
+      "Área drenada por um rio principal e seus tributários",
+      "Conjunto de municípios litorâneos",
+      "Área definida exclusivamente por limites estaduais",
+      "Somente o curso principal sem afluentes"
+    ],
+    "correct": 0,
+    "explanation": "A bacia é delimitada pelos divisores de água e inclui toda a rede de drenagem.",
+    "source": "Geografia — Meio ambiente",
+    "difficulty": 1
+  },
+  {
+    "id": "ge-017",
+    "subject": "Geografia",
+    "q": "Ilhas de calor urbanas tendem a intensificar-se com:",
+    "options": [
+      "Impermeabilização e redução de cobertura vegetal",
+      "Ampliação universal de áreas verdes",
+      "Menor concentração de superfícies construídas",
+      "Diminuição total da circulação de veículos"
+    ],
+    "correct": 0,
+    "explanation": "Materiais urbanos e menor vegetação favorecem aquecimento localizado em comparação com áreas adjacentes.",
+    "source": "Geografia — Urbanização e ambiente",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-018",
+    "subject": "Geografia",
+    "q": "A expressão 'segregação socioespacial' descreve:",
+    "options": [
+      "Separação obrigatória entre continentes",
+      "Ausência de diferenças de renda nas cidades",
+      "Transição de setores econômicos exclusivamente rurais",
+      "Distribuição desigual de grupos e oportunidades no espaço urbano"
+    ],
+    "correct": 3,
+    "explanation": "A organização desigual do território urbano expressa e reforça desigualdades sociais.",
+    "source": "Geografia — Geografia urbana",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-019",
+    "subject": "Geografia",
+    "q": "O conceito de territorialidade na Geografia Política envolve:",
+    "options": [
+      "A inexistência de disputas por recursos",
+      "Relações de poder, controle e apropriação do espaço",
+      "Apenas a delimitação natural de rios",
+      "Somente as condições climáticas locais"
+    ],
+    "correct": 1,
+    "explanation": "Território é espaço apropriado e organizado por relações de poder e instituições.",
+    "source": "Geografia — Geografia política",
+    "difficulty": 2
+  },
+  {
+    "id": "ge-020",
+    "subject": "Geografia",
+    "q": "O processo de metropolização brasileiro pode aumentar:",
+    "options": [
+      "Fluxos pendulares e integração entre municípios",
+      "A autossuficiência isolada de cada município",
+      "A eliminação automática de periferias",
+      "A redução necessária de todas as distâncias físicas"
+    ],
+    "correct": 0,
+    "explanation": "Uma metrópole organiza deslocamentos e redes de trabalho, serviços e moradia de vários municípios.",
+    "source": "Geografia — Geografia urbana",
+    "difficulty": 1
+  },
+  {
+    "id": "ec-001",
+    "subject": "Economia",
+    "q": "Mantidas as demais condições, um aumento na demanda por dólares sob câmbio flutuante tende a:",
+    "options": [
+      "Valorizar o real frente ao dólar",
+      "Fixar automaticamente o câmbio",
+      "Eliminar importações",
+      "Desvalorizar o real frente ao dólar"
+    ],
+    "correct": 3,
+    "explanation": "Maior procura pela moeda estrangeira pressiona sua cotação em reais para cima.",
+    "source": "Bresser; Economia Extra",
+    "difficulty": 1
+  },
+  {
+    "id": "ec-002",
+    "subject": "Economia",
+    "q": "A desvalorização nominal do câmbio pode não melhorar a competitividade externa se:",
+    "options": [
+      "Houver crescimento da população",
+      "A inflação doméstica anular a mudança do câmbio real",
+      "O país tiver exportações",
+      "Os juros nominais forem positivos"
+    ],
+    "correct": 1,
+    "explanation": "Preços internos em alta podem corroer o ganho inicial de competitividade da desvalorização nominal.",
+    "source": "Bresser II; Economia Extra",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-003",
+    "subject": "Economia",
+    "q": "A taxa de câmbio real incorpora:",
+    "options": [
+      "Somente a taxa de juros nominal doméstica",
+      "A taxa nominal e a relação entre preços internos e externos",
+      "Apenas o número de habitantes",
+      "Exclusivamente o estoque de reservas de ouro"
+    ],
+    "correct": 1,
+    "explanation": "O câmbio real mede preços relativos considerando a cotação nominal e níveis de preços.",
+    "source": "Bresser; Teorias de Economia",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-004",
+    "subject": "Economia",
+    "q": "Em regime de câmbio fixo e alta mobilidade de capitais, o modelo Mundell–Fleming sugere que:",
+    "options": [
+      "Não há intervenções cambiais",
+      "Política monetária autônoma expansionista tende a perder eficácia",
+      "A política monetária sempre altera permanentemente o câmbio",
+      "A conta financeira deixa de importar"
+    ],
+    "correct": 1,
+    "explanation": "Defender a paridade pode exigir operações que neutralizam a expansão monetária.",
+    "source": "Teorias de Economia; Economia Extra",
+    "difficulty": 3
+  },
+  {
+    "id": "ec-005",
+    "subject": "Economia",
+    "q": "Em câmbio flutuante e elevada mobilidade de capitais, o modelo Mundell–Fleming normalmente atribui maior eficácia à:",
+    "options": [
+      "Proibição de importações",
+      "Política monetária",
+      "Política fiscal isolada",
+      "Fixação permanente de preços"
+    ],
+    "correct": 1,
+    "explanation": "A política monetária pode atuar pelo câmbio; a expansão fiscal pode gerar apreciação e reduzir exportações líquidas.",
+    "source": "Teorias de Economia",
+    "difficulty": 3
+  },
+  {
+    "id": "ec-006",
+    "subject": "Economia",
+    "q": "Inflação inercial caracteriza-se por:",
+    "options": [
+      "Inflação causada somente por uma seca",
+      "Queda automática dos salários nominais",
+      "Eliminação da memória inflacionária dos contratos",
+      "Persistência inflacionária alimentada por indexação e reajustes com base na inflação passada"
+    ],
+    "correct": 3,
+    "explanation": "A indexação perpetua reajustes de preços e salários, reproduzindo a inflação anterior.",
+    "source": "Bresser II; Economia Extra",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-007",
+    "subject": "Economia",
+    "q": "A valorização do real, mantidas outras condições, tende a:",
+    "options": [
+      "Elevar automaticamente tarifas alfandegárias",
+      "Impedir entrada de capitais estrangeiros",
+      "Baratear importações em reais e pressionar a competitividade de exportadores",
+      "Tornar todas as importações mais caras"
+    ],
+    "correct": 2,
+    "explanation": "Uma moeda doméstica mais forte reduz o preço interno de bens importados e pode dificultar exportações.",
+    "source": "Bresser; Economia Extra",
+    "difficulty": 1
+  },
+  {
+    "id": "ec-008",
+    "subject": "Economia",
+    "q": "O conceito de doença holandesa, na abordagem novo-desenvolvimentista, refere-se:",
+    "options": [
+      "A um déficit fiscal causado exclusivamente por pensões",
+      "À sobreapreciação cambial associada a rendas de recursos naturais, prejudicando outros setores tradables",
+      "A uma epidemia rural que reduz a produtividade",
+      "À taxa de inflação definida pela autoridade monetária"
+    ],
+    "correct": 1,
+    "explanation": "Rendas extraordinárias de commodities podem sustentar um câmbio mais apreciado do que o necessário à indústria competitiva.",
+    "source": "Bresser I",
+    "difficulty": 3
+  },
+  {
+    "id": "ec-009",
+    "subject": "Economia",
+    "q": "A tarifa Alves Branco (1844) é importante porque:",
+    "options": [
+      "Aumentou a autonomia tarifária do Império e elevou alíquotas de importação",
+      "Extinguiu todo imposto de importação",
+      "Criou o Banco Central",
+      "Nacionalizou a indústria automobilística"
+    ],
+    "correct": 0,
+    "explanation": "O fim de compromissos comerciais desiguais ampliou a capacidade do Estado imperial de definir tarifas.",
+    "source": "Cervo & Bueno; Furtado",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-010",
+    "subject": "Economia",
+    "q": "A política de valorização do café na Primeira República buscou:",
+    "options": [
+      "Substituir o café por mineração de ouro",
+      "Sustentar os preços externos absorvendo excedentes",
+      "Aumentar imediatamente a produção de trigo",
+      "Impedir o crédito aos cafeicultores"
+    ],
+    "correct": 1,
+    "explanation": "A intervenção pública procurava conter quedas de preços decorrentes de excesso de oferta.",
+    "source": "Furtado; história econômica",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-011",
+    "subject": "Economia",
+    "q": "Na interpretação de Celso Furtado, a crise de 1929 contribuiu para:",
+    "options": [
+      "Eliminar toda produção agroexportadora",
+      "Retirar o Estado da economia brasileira",
+      "Deslocar o centro dinâmico para o mercado interno e fortalecer a industrialização substitutiva",
+      "Retornar integralmente ao ciclo do ouro"
+    ],
+    "correct": 2,
+    "explanation": "A retração do setor externo e a sustentação de parte da renda interna contribuíram para ampliar a importância do mercado doméstico.",
+    "source": "Formação Econômica do Brasil — Furtado",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-012",
+    "subject": "Economia",
+    "q": "Industrialização por substituição de importações refere-se a:",
+    "options": [
+      "Aumentar a importação de todos os bens de consumo sem proteção",
+      "Produzir internamente bens antes importados",
+      "Abolir o consumo doméstico",
+      "Trocar produtos industriais por serviços estrangeiros sem produção local"
+    ],
+    "correct": 1,
+    "explanation": "A redução relativa de importações e o mercado interno estimularam a produção nacional de bens anteriormente comprados fora.",
+    "source": "Furtado; Bresser",
+    "difficulty": 1
+  },
+  {
+    "id": "ec-013",
+    "subject": "Economia",
+    "q": "A distinção entre crescimento e desenvolvimento econômico envolve:",
+    "options": [
+      "A redução necessária da produtividade no desenvolvimento",
+      "Crescimento do produto versus transformações produtivas e sociais mais amplas",
+      "A identidade perfeita entre PIB e bem-estar",
+      "A impossibilidade de desenvolvimento com indústria"
+    ],
+    "correct": 1,
+    "explanation": "Desenvolvimento abrange mudanças estruturais e sociais que não se reduzem ao aumento do PIB.",
+    "source": "Teorias de Economia; Bresser",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-014",
+    "subject": "Economia",
+    "q": "A restrição externa ao crescimento decorre principalmente:",
+    "options": [
+      "Da necessidade de divisas para financiar importações e pagamentos internacionais",
+      "Do excesso de produção agrícola em todos os anos",
+      "Da inexistência de comércio internacional",
+      "De uma taxa de câmbio sempre fixa"
+    ],
+    "correct": 0,
+    "explanation": "Limites da capacidade de obter divisas podem restringir importações essenciais ao crescimento.",
+    "source": "Bresser; Furtado",
+    "difficulty": 3
+  },
+  {
+    "id": "ec-015",
+    "subject": "Economia",
+    "q": "Um déficit em conta corrente indica, em termos gerais, que:",
+    "options": [
+      "O Banco Central necessariamente não possui reservas",
+      "As exportações são obrigatoriamente iguais a zero",
+      "O país realiza pagamentos correntes líquidos ao exterior superiores às receitas correntes",
+      "Toda entrada financeira externa é ilegal"
+    ],
+    "correct": 2,
+    "explanation": "A conta corrente agrega comércio de bens, serviços, rendas primárias e secundárias.",
+    "source": "Teorias de Economia",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-016",
+    "subject": "Economia",
+    "q": "Um superávit primário corresponde a:",
+    "options": [
+      "Aumento do estoque de moeda necessariamente",
+      "Crescimento das importações acima das exportações",
+      "Receitas públicas superiores a despesas primárias, antes dos juros da dívida",
+      "Receitas inferiores a despesas com juros"
+    ],
+    "correct": 2,
+    "explanation": "O resultado primário exclui despesas financeiras de juros, ao contrário do resultado nominal.",
+    "source": "Teorias de Economia; Economia Extra",
+    "difficulty": 1
+  },
+  {
+    "id": "ec-017",
+    "subject": "Economia",
+    "q": "A política fiscal expansionista consiste tipicamente em:",
+    "options": [
+      "Fixar o preço do dólar",
+      "Elevar gastos públicos ou reduzir tributos, ampliando demanda agregada",
+      "Aumentar simultaneamente todos os impostos e cortar todas as despesas",
+      "Restringir a base monetária apenas"
+    ],
+    "correct": 1,
+    "explanation": "Gastos e tributos são instrumentos fiscais que afetam demanda e atividade.",
+    "source": "Teorias de Economia",
+    "difficulty": 1
+  },
+  {
+    "id": "ec-018",
+    "subject": "Economia",
+    "q": "A elevação da taxa básica de juros tende, mantidas outras condições, a:",
+    "options": [
+      "Eliminar o custo da dívida pública",
+      "Aumentar imediatamente todos os salários reais",
+      "Conter demanda e inflação, com possíveis efeitos sobre atividade e câmbio",
+      "Estimular necessariamente inflação no curto prazo"
+    ],
+    "correct": 2,
+    "explanation": "A política monetária contracionista encarece crédito e reduz pressão de demanda, embora seus efeitos dependam do contexto.",
+    "source": "Teorias de Economia; Economia Extra",
+    "difficulty": 2
+  },
+  {
+    "id": "ec-019",
+    "subject": "Economia",
+    "q": "Na comparação entre câmbio nominal e real, uma inflação interna superior à externa, com taxa nominal estável, tende a:",
+    "options": [
+      "Depreciar automaticamente o câmbio real",
+      "Não afetar preços relativos",
+      "Eliminar exportações por lei",
+      "Apreciar o câmbio real e reduzir competitividade"
+    ],
+    "correct": 3,
+    "explanation": "Preços domésticos relativamente maiores tornam os bens nacionais mais caros, em termos comparáveis.",
+    "source": "Bresser II; Economia Extra",
+    "difficulty": 3
+  },
+  {
+    "id": "ec-020",
+    "subject": "Economia",
+    "q": "O tripé macroeconômico adotado no Brasil a partir de 1999 combina:",
+    "options": [
+      "Emissão irrestrita, dólar fixo e salário mínimo dolarizado",
+      "Metas de inflação, câmbio flutuante e metas de resultado fiscal",
+      "Padrão ouro, câmbio fixo e congelamento salarial",
+      "Tarifas nulas, controle de preços e indexação"
+    ],
+    "correct": 1,
+    "explanation": "O regime consolidou metas de inflação, flutuação cambial e disciplina fiscal, embora seus detalhes tenham mudado ao longo do tempo.",
+    "source": "Bresser; economia brasileira",
+    "difficulty": 2
+  },
+  {
+    "id": "di-001",
+    "subject": "Direito",
+    "q": "A Constituição brasileira de 1988 define como fundamentos da República, entre outros:",
+    "options": [
+      "Primazia de tratados sobre toda a Constituição",
+      "Monarquia constitucional e Poder Moderador",
+      "Soberania, cidadania e dignidade da pessoa humana",
+      "Censura prévia e partido único"
+    ],
+    "correct": 2,
+    "explanation": "O artigo 1º enumera soberania, cidadania, dignidade humana, valores sociais do trabalho e livre iniciativa e pluralismo político.",
+    "source": "Constituição Federal, art. 1º",
+    "difficulty": 1
+  },
+  {
+    "id": "di-002",
+    "subject": "Direito",
+    "q": "A separação de poderes na Constituição de 1988 compreende:",
+    "options": [
+      "União, Mercosul e OEA",
+      "Legislativo, Executivo e Judiciário",
+      "Exército, Marinha e Aeronáutica",
+      "Municípios, Estados e tratados"
+    ],
+    "correct": 1,
+    "explanation": "Os três Poderes da União são independentes e harmônicos entre si, conforme art. 2º.",
+    "source": "Constituição Federal, art. 2º",
+    "difficulty": 1
+  },
+  {
+    "id": "di-003",
+    "subject": "Direito",
+    "q": "É princípio constitucional das relações internacionais brasileiras:",
+    "options": [
+      "Anexação compulsória de Estados vizinhos",
+      "Guerra preventiva obrigatória",
+      "Negação da autodeterminação dos povos",
+      "Não intervenção"
+    ],
+    "correct": 3,
+    "explanation": "O art. 4º inclui independência nacional, prevalência dos direitos humanos, autodeterminação e não intervenção, entre outros.",
+    "source": "Constituição Federal, art. 4º",
+    "difficulty": 1
+  },
+  {
+    "id": "di-004",
+    "subject": "Direito",
+    "q": "Na Constituição, o voto é obrigatório, em regra, para:",
+    "options": [
+      "Todas as pessoas entre 16 e 17 anos",
+      "Maiores de 70 anos",
+      "Estrangeiros residentes que não se naturalizaram",
+      "Alfabetizados entre 18 e 70 anos"
+    ],
+    "correct": 3,
+    "explanation": "O voto é obrigatório para eleitores alfabetizados de 18 a 70 anos; há hipóteses constitucionais de facultatividade.",
+    "source": "Constituição Federal, art. 14",
+    "difficulty": 2
+  },
+  {
+    "id": "di-005",
+    "subject": "Direito",
+    "q": "Em geral, a ação de habeas corpus protege:",
+    "options": [
+      "Exclusivamente a propriedade industrial",
+      "Liberdade de locomoção diante de ilegalidade ou abuso de poder",
+      "Direitos autorais de empresas",
+      "O orçamento de Estados"
+    ],
+    "correct": 1,
+    "explanation": "Habeas corpus tutela a liberdade de ir e vir quando ameaçada ou restringida ilegalmente.",
+    "source": "Constituição Federal, art. 5º",
+    "difficulty": 1
+  },
+  {
+    "id": "di-006",
+    "subject": "Direito",
+    "q": "Uma característica essencial da federação brasileira é:",
+    "options": [
+      "Autonomia política dos entes federativos nos limites constitucionais",
+      "Soberania internacional plena de cada município",
+      "Direito unilateral dos Estados de secessão",
+      "Subordinação do Judiciário ao Executivo estadual"
+    ],
+    "correct": 0,
+    "explanation": "A federação reúne União, Estados, Distrito Federal e Municípios com competências e autonomias constitucionalmente fixadas.",
+    "source": "Constituição Federal; Direito Interno",
+    "difficulty": 2
+  },
+  {
+    "id": "di-007",
+    "subject": "Direito",
+    "q": "O controle concentrado de constitucionalidade de lei federal em face da Constituição Federal cabe, em regra, ao:",
+    "options": [
+      "Tribunal Superior Eleitoral",
+      "Tribunal de Contas da União",
+      "Conselho de Segurança da ONU",
+      "Supremo Tribunal Federal"
+    ],
+    "correct": 3,
+    "explanation": "O STF exerce a jurisdição constitucional concentrada em ações como a ADI e a ADC.",
+    "source": "Constituição Federal; Direito Interno",
+    "difficulty": 2
+  },
+  {
+    "id": "di-008",
+    "subject": "Direito",
+    "q": "Segundo a Convenção de Viena de 1969, um tratado contrário a norma de jus cogens no momento de sua conclusão é:",
+    "options": [
+      "Obrigatório apenas para organizações não governamentais",
+      "Nulo",
+      "Válido até o primeiro aniversário",
+      "Válido se houver duas reservas"
+    ],
+    "correct": 1,
+    "explanation": "O art. 53 prevê nulidade de tratado em conflito com norma imperativa de direito internacional geral.",
+    "source": "DIP — Mazzuoli; Convenção de Viena",
+    "difficulty": 2
+  },
+  {
+    "id": "di-009",
+    "subject": "Direito",
+    "q": "O princípio pacta sunt servanda significa que:",
+    "options": [
+      "Nenhum tratado pode ser denunciado",
+      "Reservas a tratados são sempre proibidas",
+      "A assinatura de qualquer tratado supera automaticamente constituições nacionais",
+      "Tratados em vigor obrigam as partes e devem ser cumpridos de boa-fé"
+    ],
+    "correct": 3,
+    "explanation": "A regra do art. 26 da Convenção de Viena exige cumprimento de boa-fé dos tratados em vigor.",
+    "source": "DIP — Mazzuoli",
+    "difficulty": 1
+  },
+  {
+    "id": "di-010",
+    "subject": "Direito",
+    "q": "Qual é a regra geral sobre tratados e terceiros Estados na Convenção de Viena?",
+    "options": [
+      "Todo tratado obriga universalmente todos os Estados",
+      "A ONU deve assinar cada tratado bilateral",
+      "Tratados só podem ter dois participantes",
+      "Tratado não cria obrigações ou direitos para terceiros sem seu consentimento"
+    ],
+    "correct": 3,
+    "explanation": "Pacta tertiis nec nocent nec prosunt: tratados não criam direitos nem obrigações para terceiros sem consentimento.",
+    "source": "DIP — Mazzuoli",
+    "difficulty": 2
+  },
+  {
+    "id": "di-011",
+    "subject": "Direito",
+    "q": "Segundo o Direito Internacional, a reserva a tratado é em geral inadmissível quando:",
+    "options": [
+      "É apresentada em qualquer tratado multilateral",
+      "É formulada no idioma do Estado",
+      "O tratado admite expressamente reservas",
+      "É incompatível com objeto e finalidade do tratado"
+    ],
+    "correct": 3,
+    "explanation": "A Convenção de Viena admite reservas com limites, inclusive compatibilidade com objeto e finalidade.",
+    "source": "DIP — Mazzuoli",
+    "difficulty": 3
+  },
+  {
+    "id": "di-012",
+    "subject": "Direito",
+    "q": "As decisões do Conselho de Segurança da ONU, tomadas dentro das competências da Carta, podem:",
+    "options": [
+      "Ser juridicamente obrigatórias para os Estados-membros",
+      "Ser apenas pareceres acadêmicos",
+      "Revogar automaticamente todas as constituições nacionais",
+      "Ser emitidas somente com unanimidade de 193 Estados"
+    ],
+    "correct": 0,
+    "explanation": "Pela Carta, os membros concordam em cumprir decisões do Conselho de Segurança, inclusive no âmbito do Capítulo VII.",
+    "source": "DIP — órgãos e agências; Carta da ONU",
+    "difficulty": 2
+  },
+  {
+    "id": "di-013",
+    "subject": "Direito",
+    "q": "As resoluções da Assembleia Geral da ONU têm, em regra, natureza:",
+    "options": [
+      "Equivalente a tratados ratificados",
+      "Militar sob Capítulo VII",
+      "Recomendatória",
+      "Obrigatória como sentenças judiciais para qualquer matéria"
+    ],
+    "correct": 2,
+    "explanation": "A Assembleia Geral normalmente formula recomendações; determinadas decisões internas e orçamentárias têm efeitos próprios.",
+    "source": "DIP — órgãos e agências",
+    "difficulty": 2
+  },
+  {
+    "id": "di-014",
+    "subject": "Direito",
+    "q": "A Corte Internacional de Justiça distingue-se do Tribunal Penal Internacional porque:",
+    "options": [
+      "Julga litígios interestatais, enquanto o TPI exerce jurisdição penal sobre indivíduos",
+      "Ambos julgam apenas indivíduos",
+      "A CIJ integra a União Europeia",
+      "O TPI é órgão judicial principal da OEA"
+    ],
+    "correct": 0,
+    "explanation": "A CIJ é o principal órgão judiciário da ONU e decide casos entre Estados; o TPI julga responsabilidade penal individual em sua competência.",
+    "source": "DIP — Mazzuoli; órgãos e agências",
+    "difficulty": 2
+  },
+  {
+    "id": "di-015",
+    "subject": "Direito",
+    "q": "A Convenção Americana sobre Direitos Humanos também é conhecida como:",
+    "options": [
+      "Estatuto de Roma",
+      "Carta de Bogotá",
+      "Tratado de Assunção",
+      "Pacto de San José da Costa Rica"
+    ],
+    "correct": 3,
+    "explanation": "A Convenção foi adotada em San José em 1969 e estrutura o sistema interamericano de proteção dos direitos humanos.",
+    "source": "DIP; linha do tempo OEA/SIDH",
+    "difficulty": 1
+  },
+  {
+    "id": "di-016",
+    "subject": "Direito",
+    "q": "A Carta da Organização dos Estados Americanos foi assinada em:",
+    "options": [
+      "1948, em Bogotá",
+      "1919, em Versalhes",
+      "1969, em San José",
+      "1991, em Assunção"
+    ],
+    "correct": 0,
+    "explanation": "A Carta da OEA foi assinada em Bogotá em 1948.",
+    "source": "Linha do tempo OEA/SIDH",
+    "difficulty": 1
+  },
+  {
+    "id": "di-017",
+    "subject": "Direito",
+    "q": "A Convenção de Belém do Pará (1994) trata da:",
+    "options": [
+      "Proteção exclusiva dos trabalhadores marítimos",
+      "Prevenção, punição e erradicação da violência contra a mulher",
+      "Regulamentação de águas internacionais",
+      "Criação da Organização Mundial do Comércio"
+    ],
+    "correct": 1,
+    "explanation": "É instrumento interamericano de combate à violência contra a mulher.",
+    "source": "Linha do tempo OEA/SIDH",
+    "difficulty": 1
+  },
+  {
+    "id": "di-018",
+    "subject": "Direito",
+    "q": "A Carta Democrática Interamericana foi aprovada em:",
+    "options": [
+      "2018, em Escazú",
+      "2001, em Lima",
+      "1948, em Bogotá",
+      "1988, em Brasília"
+    ],
+    "correct": 1,
+    "explanation": "A Carta Democrática Interamericana foi adotada no Peru em 2001.",
+    "source": "Linha do tempo OEA/SIDH",
+    "difficulty": 2
+  },
+  {
+    "id": "di-019",
+    "subject": "Direito",
+    "q": "O Tratado de Tlatelolco (1967) estabeleceu:",
+    "options": [
+      "A união monetária sul-americana",
+      "O Tribunal Penal Internacional",
+      "A Comunidade Econômica Europeia",
+      "Uma zona livre de armas nucleares na América Latina e no Caribe"
+    ],
+    "correct": 3,
+    "explanation": "Tlatelolco criou o regime regional de proscrição das armas nucleares na América Latina e Caribe.",
+    "source": "Linha do tempo OEA/SIDH",
+    "difficulty": 2
+  },
+  {
+    "id": "di-020",
+    "subject": "Direito",
+    "q": "O Acordo de Escazú associa-se principalmente a:",
+    "options": [
+      "Defesa coletiva da OTAN",
+      "Delimitação da fronteira Brasil-Bolívia",
+      "Acesso à informação, participação e justiça em matéria ambiental",
+      "Concessão de nacionalidade para residentes estrangeiros"
+    ],
+    "correct": 2,
+    "explanation": "Escazú disciplina direitos de acesso ambientais e proteção de defensores do meio ambiente.",
+    "source": "Linha do tempo OEA/SIDH",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-001",
+    "subject": "Relações Internacionais",
+    "q": "Para E. H. Carr, uma teoria política internacional madura exige:",
+    "options": [
+      "Eliminar todos os valores da política",
+      "Tratar harmonia de interesses como fato universal incontroverso",
+      "Substituir explicação histórica por idealização permanente",
+      "Combinar análise realista e finalidade normativa"
+    ],
+    "correct": 3,
+    "explanation": "Carr critica o utopismo ingênuo sem considerar o realismo puro suficiente; propõe tensão entre propósito e realidade.",
+    "source": "Carr — The Twenty Years’ Crisis",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-002",
+    "subject": "Relações Internacionais",
+    "q": "Segundo Carr, a 'harmonia de interesses' liberal pode funcionar como:",
+    "options": [
+      "Prova de que Estados têm interesses idênticos",
+      "Regra jurídica prevista na Carta da ONU",
+      "Condição necessária do sufrágio universal",
+      "Justificação ideológica de interesses dos grupos dominantes"
+    ],
+    "correct": 3,
+    "explanation": "Carr questiona a pretensão de universalidade de interesses que frequentemente expressam os grupos satisfeitos com a ordem.",
+    "source": "Carr — The Twenty Years’ Crisis",
+    "difficulty": 3
+  },
+  {
+    "id": "ri-003",
+    "subject": "Relações Internacionais",
+    "q": "Soft power, conforme Joseph Nye, é principalmente a capacidade de:",
+    "options": [
+      "Fixar compulsoriamente taxas de câmbio externas",
+      "Impedir qualquer negociação multilateral",
+      "Obter resultados por atração, e não apenas coerção ou pagamento",
+      "Empregar força militar sem custo"
+    ],
+    "correct": 2,
+    "explanation": "Fontes típicas são cultura, valores e políticas percebidas como legítimas.",
+    "source": "Nye — Soft Power",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-004",
+    "subject": "Relações Internacionais",
+    "q": "Smart power corresponde à:",
+    "options": [
+      "Exclusividade da coerção militar",
+      "Neutralidade obrigatória em disputas internacionais",
+      "Combinação estratégica de instrumentos de hard e soft power",
+      "Substituição completa da diplomacia por algoritmos"
+    ],
+    "correct": 2,
+    "explanation": "Nye defende combinação eficaz de atração e coerção conforme o contexto estratégico.",
+    "source": "Nye — Soft Power",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-005",
+    "subject": "Relações Internacionais",
+    "q": "Para Huntington, após a Guerra Fria, os conflitos tenderiam a ser organizados crescentemente por:",
+    "options": [
+      "Um governo mundial único",
+      "Identidades civilizacionais e culturais",
+      "Exclusivamente disputa entre duas ideologias econômicas",
+      "Abolição das diferenças religiosas"
+    ],
+    "correct": 1,
+    "explanation": "É a tese central de Huntington, que deve ser tratada como sua interpretação, não como consenso.",
+    "source": "Huntington — Clash of Civilizations",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-006",
+    "subject": "Relações Internacionais",
+    "q": "A perspectiva institucionalista de regimes internacionais definida por Krasner destaca:",
+    "options": [
+      "A superioridade obrigatória de um único Estado",
+      "Princípios, normas, regras e procedimentos de decisão que convergem expectativas",
+      "Somente constituições nacionais escritas",
+      "A inexistência de cooperação sem governo mundial"
+    ],
+    "correct": 1,
+    "explanation": "Regimes organizam expectativas dos atores em áreas específicas e podem facilitar cooperação.",
+    "source": "Galvão — Relações Internacionais",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-007",
+    "subject": "Relações Internacionais",
+    "q": "O problema do free riding em cooperação internacional refere-se a:",
+    "options": [
+      "Celebrar tratados com mais de três partes",
+      "Beneficiar-se da cooperação sem arcar proporcionalmente com seus custos",
+      "Abandonar a soberania para obter cidadania global",
+      "Utilizar somente recursos militares"
+    ],
+    "correct": 1,
+    "explanation": "Instituições podem reduzir incentivos à carona aumentando informação, monitoramento e reciprocidade.",
+    "source": "Galvão — Relações Internacionais",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-008",
+    "subject": "Relações Internacionais",
+    "q": "O conceito de anarquia internacional significa, nas teorias clássicas de RI:",
+    "options": [
+      "Inexistência de soberania estatal",
+      "Ausência de autoridade hierárquica superior aos Estados",
+      "Ausência completa de normas e instituições",
+      "Estado permanente de guerra mundial"
+    ],
+    "correct": 1,
+    "explanation": "Anarquia não implica caos necessário, mas falta de governo mundial centralizado.",
+    "source": "Ramos; Galvão",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-009",
+    "subject": "Relações Internacionais",
+    "q": "O neorrealismo enfatiza principalmente:",
+    "options": [
+      "Primazia absoluta das normas sobre poder em qualquer situação",
+      "Desaparecimento dos Estados",
+      "Explicação exclusivamente psicológica dos líderes",
+      "Estrutura anárquica, distribuição de capacidades e preocupações de segurança"
+    ],
+    "correct": 3,
+    "explanation": "A abordagem estrutural coloca distribuição de poder e segurança no centro da análise.",
+    "source": "Ramos — Teoria das RI",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-010",
+    "subject": "Relações Internacionais",
+    "q": "O institucionalismo neoliberal reconhece a anarquia, mas enfatiza que:",
+    "options": [
+      "A política externa deixa de existir",
+      "Só há cooperação quando uma superpotência se dissolve",
+      "Instituições podem reduzir incertezas e facilitar cooperação",
+      "Cooperação é logicamente impossível"
+    ],
+    "correct": 2,
+    "explanation": "Neoliberais institucionalistas diferem do neorrealismo na avaliação das condições de cooperação.",
+    "source": "Ramos — Teoria das RI",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-011",
+    "subject": "Relações Internacionais",
+    "q": "O construtivismo em RI acentua:",
+    "options": [
+      "A construção social de identidades, interesses e normas",
+      "Somente a geografia física como causa de conflitos",
+      "A impossibilidade de mudança institucional",
+      "A equivalência entre poder militar e legitimidade"
+    ],
+    "correct": 0,
+    "explanation": "O construtivismo analisa como interação e ideias constituem identidades e interesses dos atores.",
+    "source": "Ramos — Teoria das RI",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-012",
+    "subject": "Relações Internacionais",
+    "q": "No Império, a diplomacia brasileira no Prata procurou, de modo recorrente:",
+    "options": [
+      "Impedir hegemonia de Buenos Aires e preservar a navegação e a independência de vizinhos",
+      "Incorporar permanentemente todas as repúblicas hispânicas",
+      "Renunciar a qualquer papel no Uruguai",
+      "Eliminar relações comerciais com a Grã-Bretanha"
+    ],
+    "correct": 0,
+    "explanation": "Equilíbrio regional, navegação e preservação do Uruguai e Paraguai aparecem como objetivos persistentes.",
+    "source": "Lessa & Doratioto; Cervo & Bueno",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-013",
+    "subject": "Relações Internacionais",
+    "q": "O período de Rio Branco como chanceler brasileiro foi:",
+    "options": [
+      "1961–1964",
+      "1902–1912",
+      "1889–1891",
+      "1930–1945"
+    ],
+    "correct": 1,
+    "explanation": "Rio Branco conduziu a política externa da Primeira República durante dez anos, marcados por fronteiras e pragmatismo.",
+    "source": "Lessa & Doratioto; Cervo & Bueno",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-014",
+    "subject": "Relações Internacionais",
+    "q": "A saída do Brasil da Liga das Nações ocorreu em:",
+    "options": [
+      "1926",
+      "1919",
+      "1945",
+      "1955"
+    ],
+    "correct": 0,
+    "explanation": "O Brasil deixou a Liga diante da frustração com a pretensão de integrar permanentemente seu Conselho.",
+    "source": "Lessa & Doratioto; linha do tempo PEB",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-015",
+    "subject": "Relações Internacionais",
+    "q": "A 'equidistância pragmática' do governo Vargas, antes do alinhamento na Segunda Guerra, refere-se a:",
+    "options": [
+      "Explorar margem de negociação entre EUA e Alemanha para objetivos nacionais",
+      "Neutralidade jurídica absoluta até 1945",
+      "Alinhamento imediato ao Eixo desde 1930",
+      "Recusa total de cooperação econômica externa"
+    ],
+    "correct": 0,
+    "explanation": "A barganha diplomática favoreceu iniciativas ligadas à industrialização, incluindo a siderurgia.",
+    "source": "Lessa & Doratioto; política externa brasileira",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-016",
+    "subject": "Relações Internacionais",
+    "q": "A Operação Pan-Americana, lançada por JK em 1958, articulou:",
+    "options": [
+      "A criação da OTAN",
+      "A anexação do Uruguai ao Brasil",
+      "A nacionalização da ONU",
+      "Desenvolvimento econômico e segurança hemisférica"
+    ],
+    "correct": 3,
+    "explanation": "JK buscava maior cooperação econômica dos EUA ao ligar subdesenvolvimento e instabilidade política.",
+    "source": "Lessa & Doratioto; linha do tempo PEB",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-017",
+    "subject": "Relações Internacionais",
+    "q": "A Política Externa Independente de Jânio e Jango (1961–1964) valorizou:",
+    "options": [
+      "Ruptura de todas as relações com países socialistas",
+      "Aderência obrigatória a decisões unilaterais norte-americanas",
+      "Abandono da descolonização",
+      "Universalização das relações e autodeterminação sem alinhamento automático"
+    ],
+    "correct": 3,
+    "explanation": "A PEI enfatizava autonomia, universalismo e temas de desenvolvimento e descolonização.",
+    "source": "Lessa & Doratioto; política externa brasileira",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-018",
+    "subject": "Relações Internacionais",
+    "q": "Os '3 Ds' de Araújo Castro referem-se a:",
+    "options": [
+      "Democracia, dolarização e desregulação",
+      "Defesa, dívida e dissuasão",
+      "Diplomacia, direito e discriminação",
+      "Desarmamento, desenvolvimento e descolonização"
+    ],
+    "correct": 3,
+    "explanation": "O discurso de 1963 articulou prioridades brasileiras na ONU: desarmamento, desenvolvimento e descolonização.",
+    "source": "Política Externa Brasileira — Timeline",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-019",
+    "subject": "Relações Internacionais",
+    "q": "O 'Pragmatismo Ecumênico e Responsável' caracteriza a política externa de:",
+    "options": [
+      "Jânio, com Afonso Arinos",
+      "Geisel, com Azeredo da Silveira",
+      "Dutra, com Raul Fernandes",
+      "Collor, com Celso Lafer"
+    ],
+    "correct": 1,
+    "explanation": "Sob Geisel, houve diversificação de parceiros e maior flexibilidade diplomática, incluindo a China e Angola.",
+    "source": "Lessa & Doratioto; Cervo & Bueno",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-020",
+    "subject": "Relações Internacionais",
+    "q": "A construção de confiança nuclear entre Brasil e Argentina foi institucionalizada pela ABACC em:",
+    "options": [
+      "1991",
+      "1964",
+      "1974",
+      "2008"
+    ],
+    "correct": 0,
+    "explanation": "A Agência Brasileiro-Argentina de Contabilidade e Controle de Materiais Nucleares foi criada em 1991.",
+    "source": "Política Externa Brasileira — Timeline",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-021",
+    "subject": "Relações Internacionais",
+    "q": "A estratégia denominada 'autonomia pela participação' é associada ao governo:",
+    "options": [
+      "João Goulart",
+      "D. Pedro I",
+      "Getúlio Vargas no Estado Novo",
+      "Fernando Henrique Cardoso"
+    ],
+    "correct": 3,
+    "explanation": "A orientação privilegiou atuar nas instituições e regras multilaterais para influenciar seu desenho.",
+    "source": "Cervo & Bueno; linha do tempo PEB",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-022",
+    "subject": "Relações Internacionais",
+    "q": "A 'autonomia pela diversificação' é associada em especial ao:",
+    "options": [
+      "Segundo Reinado",
+      "Governo Eurico Dutra",
+      "Governo Lula, 2003–2010",
+      "Governo Deodoro"
+    ],
+    "correct": 2,
+    "explanation": "A diversificação de parcerias e o fortalecimento do Sul Global buscavam ampliar margem de negociação externa.",
+    "source": "Cervo & Bueno; linha do tempo PEB",
+    "difficulty": 2
+  },
+  {
+    "id": "ri-023",
+    "subject": "Relações Internacionais",
+    "q": "A Declaração de Iguaçu de 1985 é um marco de:",
+    "options": [
+      "Adesão brasileira ao TNP",
+      "Rompimento diplomático entre Brasil e Uruguai",
+      "Aproximação e integração entre Brasil e Argentina",
+      "Criação do Conselho de Segurança da ONU"
+    ],
+    "correct": 2,
+    "explanation": "Sarney e Alfonsín impulsionaram a aproximação bilateral que preparou a integração regional posterior.",
+    "source": "Lessa & Doratioto; linha do tempo PEB",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-024",
+    "subject": "Relações Internacionais",
+    "q": "O Tratado de Assunção, de 1991, criou:",
+    "options": [
+      "A União Europeia",
+      "O TPI",
+      "O Mercosul",
+      "A OEA"
+    ],
+    "correct": 2,
+    "explanation": "Argentina, Brasil, Paraguai e Uruguai firmaram o tratado constitutivo do Mercosul.",
+    "source": "Política Externa Brasileira — Timeline; OEA timeline",
+    "difficulty": 1
+  },
+  {
+    "id": "ri-025",
+    "subject": "Relações Internacionais",
+    "q": "A diplomacia triangular de Nixon e Kissinger procurava:",
+    "options": [
+      "Isolar simultaneamente China e URSS por ausência de diálogo",
+      "Extinguir a OTAN em 1972",
+      "Explorar a rivalidade sino-soviética para ampliar a margem de negociação dos EUA",
+      "Formar aliança militar permanente EUA-China-URSS"
+    ],
+    "correct": 2,
+    "explanation": "Washington buscou melhores relações com Moscou e Pequim do que as duas potências comunistas mantinham entre si.",
+    "source": "Kissinger, cap. 28",
+    "difficulty": 3
+  },
+  {
+    "id": "ri-026",
+    "subject": "Relações Internacionais",
+    "q": "Détente entre EUA e URSS nos anos 1970 significava:",
+    "options": [
+      "Administração negociada da rivalidade sem eliminação da competição estratégica",
+      "Fim definitivo do antagonismo ideológico em 1972",
+      "Dissolução da URSS",
+      "Unificação imediata da Alemanha"
+    ],
+    "correct": 0,
+    "explanation": "Kissinger descreve détente como gestão da competição por meio de negociações e controle de armas, não amizade.",
+    "source": "Kissinger, cap. 29",
+    "difficulty": 2
+  }
+];</script><script src="app.js"></script></body></html>
